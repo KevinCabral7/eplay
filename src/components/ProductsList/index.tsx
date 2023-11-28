@@ -1,6 +1,6 @@
 import Game from '../../models/Game'
 import Product from '../Product'
-import { List, Container } from './styles'
+import { List, Container, Title } from './styles'
 
 export type Props = {
   title: string
@@ -11,7 +11,7 @@ export type Props = {
 const ProductsList = ({ title, background, Games }: Props) => (
   <Container background={background}>
     <div className="container">
-      <h2>{title}</h2>
+      <Title>{title}</Title>
       <List>
         {Games.map((game) => (
           <Product
