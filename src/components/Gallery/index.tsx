@@ -4,37 +4,19 @@ import play from '../../assets/images/play.png'
 import zoom from '../../assets/images/zoom.png'
 import close from '../../assets/images/close.png'
 import { useState } from 'react'
-
-interface GalleryItem {
-  type: 'image' | 'video'
-  url: string
-}
-
-const mock: GalleryItem[] = [
-  {
-    type: 'image',
-    url: 'https://place-hold.it/150x150'
-  },
-  {
-    type: 'image',
-    url: 'https://place-hold.it/150x151'
-  },
-  {
-    type: 'video',
-    url: 'https://www.youtube.com/embed/3FBtg5PSdTQ?si=SnA-FMTHdgxh9qLP'
-  }
-]
+import { GalleryItem } from '../../pages/Home'
 
 type Props = {
   defaultCover: string
   name: string
+  items: GalleryItem[]
 }
 
 interface ModalState extends GalleryItem {
   isVisible: boolean
 }
 
-const Gallery = ({ defaultCover, name }: Props) => {
+const Gallery = ({ defaultCover, name, items }: Props) => {
   const [modal, setModal] = useState<ModalState>({
     isVisible: false,
     type: 'image',
@@ -61,7 +43,7 @@ const Gallery = ({ defaultCover, name }: Props) => {
     <>
       <Section title="Galeria" background="black">
         <S.Items>
-          {mock.map((media, index) => (
+          {items.map((media, index) => (
             <S.Item
               key={media.url}
               onClick={() => {
@@ -98,8 +80,6 @@ const Gallery = ({ defaultCover, name }: Props) => {
           ) : (
             <iframe frameBorder={0} src={modal.url} />
           )}
-
-          <img src={modal.url} alt="" />
         </S.ModalContent>
         <div className="overlay" onClick={() => closeModal()}></div>
       </S.Modal>

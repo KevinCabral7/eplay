@@ -8,13 +8,25 @@ export const Imagem = styled.div`
   background-size: cover;
   background-position: center;
   font-weight: bold;
+  position: relative;
 
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.56;
+  }
   .container {
     position: relative;
     padding-top: 340px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    z-index: 1;
   }
 
   ${TagContainer} {
